@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class GC123 {
+public class GC123 {//testgithub
 	public static void main(String[] args) {
 		String path = "Pathway of your file";
 		cleanLineBreak("file name", path);
@@ -77,7 +77,6 @@ public class GC123 {
 					bwgc3.write(String.valueOf(gc3) + "\n");
 				}
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class GC123 {
 	public static void main(String[] args) {
-		String path = "E:\\chloroplast\\codonBias\\codonw\\300\\Manihot_esculenta_300\\";
-		cleanLineBreak("Manihot_esculenta_300.fasta", path);
+		String path = "文件路径，Pathway of your file";
+		cleanLineBreak("文件名，file name", path);
 		readFileByLines("tempFile.fasta", path);
 	}
 

@@ -69,8 +69,7 @@ public class GC123 {
 						}
 					}
 					gc1 = gc1 / Totail;
-					gc2 = gc2 / Totail;// gc1,gc2都是不计算(AUG+UGG)，所以
-										// gc1Totail=gc2Totail
+					gc2 = gc2 / Totail;
 					gc3 = gc3 / Totail;
 					bwgc1.write(String.valueOf(gc1) + "\n");
 					bwgc2.write(String.valueOf(gc2) + "\n");

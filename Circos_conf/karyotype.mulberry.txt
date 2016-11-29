@@ -1,0 +1,2 @@
+chr - mulberry 1 0 158700 chr1
+band mulberry p36.33 p36.33 0 158700 gneg

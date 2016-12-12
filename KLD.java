@@ -7,18 +7,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 public class KLD {
-	public static String[] code_table = { "TTT", "TCT", "TTC", "TCC", "TTA",
+	final public static String[] Code_table = { "TTT", "TCT", "TTC", "TCC", "TTA",
 			"TCA", "TTG", "TCG", "CTT", "CCT", "CTC", "CCC", "CTA", "CCA",
-			"CTG", "CCG", "ATT", "ACT", "ATC", "ACC", "ATA", "ACA", "ATG",
+			"CTG", "CCG", "ATT", "ACT", "ATC", "ACC", "ATA", "ACA",
 			"ACG", "GTT", "GCT", "GTC", "GCC", "GTA", "GCA", "GTG", "GCG",
-			"TAT", "TGT", "TAC", "TGC", "TAA", "TGA", "TAG", "TGG", "CAT",
+			"TAT", "TGT", "TAC", "TGC", "CAT",
 			"CGT", "CAC", "CGC", "CAA", "CGA", "CAG", "CGG", "AAT", "AGT",
 			"AAC", "AGC", "AAA", "AGA", "AAG", "AGG", "GAT", "GGT", "GAC",
 			"GGC", "GAA", "GGA", "GAG", "GGG" };
+	final public static String[] AA_table ={"Phe","Ser","Tyr","Cys","Leu","Pro",
+			"His","Gin","Arg","Ile","Thr","Asn","Lys","Val","Ala","Asp","Glu","Gly"};
 
 	public static Map<String, String> synAminoAcidBox() {
 		HashMap<String, String> synAminoAcidTable = new HashMap<String, String>();
@@ -85,113 +89,46 @@ public class KLD {
 		return synAminoAcidTable;
 	}
 
-	// 待用
-	/**
-	 * public static Map<String,String> allAminoAcidBox(){ HashMap<String,
-	 * String> allAminoAcidTable = new HashMap<String, String>();
-	 * allAminoAcidTable.put("TGG","Trp"); allAminoAcidTable.put("AUG","Met");
-	 * 
-	 * allAminoAcidTable.put("TTT","Phe"); allAminoAcidTable.put("TTC","Phe");
-	 * allAminoAcidTable.put("TCT","Ser"); allAminoAcidTable.put("TCC","Ser");
-	 * allAminoAcidTable.put("TCA","Ser"); allAminoAcidTable.put("TCG","Ser");
-	 * allAminoAcidTable.put("TAT","Tyr"); allAminoAcidTable.put("TAC","Tyr");
-	 * allAminoAcidTable.put("TGT","Cys"); allAminoAcidTable.put("TGC","Cys");
-	 * allAminoAcidTable.put("TTA","Leu"); allAminoAcidTable.put("TTG","Leu");
-	 * allAminoAcidTable.put("CTT","Leu"); allAminoAcidTable.put("CTC","Leu");
-	 * allAminoAcidTable.put("CTA","Leu"); allAminoAcidTable.put("CTG","Leu");
-	 * allAminoAcidTable.put("CCT","Pro"); allAminoAcidTable.put("CCC","Pro");
-	 * allAminoAcidTable.put("CCA","Pro"); allAminoAcidTable.put("CCG","Pro");
-	 * allAminoAcidTable.put("CAT","His"); allAminoAcidTable.put("CAC","His");
-	 * allAminoAcidTable.put("CAA","Gin"); allAminoAcidTable.put("CAG","Gin");
-	 * allAminoAcidTable.put("CGT","Arg"); allAminoAcidTable.put("CGC","Arg");
-	 * allAminoAcidTable.put("CGA","Arg"); allAminoAcidTable.put("CGG","Arg");
-	 * allAminoAcidTable.put("ATT","Ile"); allAminoAcidTable.put("ATC","Ile");
-	 * allAminoAcidTable.put("ATA","Ile"); allAminoAcidTable.put("ACT","Thr");
-	 * allAminoAcidTable.put("ACC","Thr"); allAminoAcidTable.put("ACA","Thr");
-	 * allAminoAcidTable.put("ACG","Thr"); allAminoAcidTable.put("AAT","Asn");
-	 * allAminoAcidTable.put("AAC","Asn"); allAminoAcidTable.put("AAA","Lys");
-	 * allAminoAcidTable.put("AAG","Lys"); allAminoAcidTable.put("AGT","Ser");
-	 * allAminoAcidTable.put("AGC","Ser"); allAminoAcidTable.put("AGA","Arg");
-	 * allAminoAcidTable.put("AGG","Arg"); allAminoAcidTable.put("GTT","Val");
-	 * allAminoAcidTable.put("GTC","Val"); allAminoAcidTable.put("GTA","Val");
-	 * allAminoAcidTable.put("GTG","Val"); allAminoAcidTable.put("GCT","Ala");
-	 * allAminoAcidTable.put("GCC","Ala"); allAminoAcidTable.put("GCA","Ala");
-	 * allAminoAcidTable.put("GCG","Ala"); allAminoAcidTable.put("GAT","Asp");
-	 * allAminoAcidTable.put("GAC","Asp"); allAminoAcidTable.put("GAA","Glu");
-	 * allAminoAcidTable.put("GAG","Glu"); allAminoAcidTable.put("GGT","Gly");
-	 * allAminoAcidTable.put("GGC","Gly"); allAminoAcidTable.put("GGA","Gly");
-	 * allAminoAcidTable.put("GGG","Gly"); return allAminoAcidTable; }
-	 **/
+
 
 	public static void main(String[] args) {
 		// Scanner sc = new Scanner(System.in);
 		// System.out.println("Please input file name ,e.g.mulberry.fasta");
 		// String inputFileName = sc.nextLine().trim();
 		// sc.close();
-		String path = "C:\\Users\\Administrator\\Desktop\\testRandom\\kld\\";
+		String path = "C:\\Users\\Administrator\\Desktop\\aaaaaa\\";
 		noSpaceTempFile("mulberry_300.fasta",path);
-		int i = 1;
-
-		// String[] code_table = { "TTT", "ATG", "TAA", "TAG","TGA","GCC"};
-
-		
-		for (int q = 0; q < code_table.length; q++) {
-			if ((!code_table[q].equals("ATG"))
-					&& (!code_table[q].equals("TAA"))
-					&& (!code_table[q].equals("TGA"))
-					&& (!code_table[q].equals("TAG"))) {
-				String iterationCodon = code_table[q];
-				double partA = coreKLDPartA(iterationCodon, synAminoAcidBox(),path);
-				double partB = coreKLDPartB(iterationCodon, synAminoAcidBox(),path);
-				double partAdivB = partA / partB;
-				//原文中的概率被均一化为1000个bases碱基，出现的次数
-				double partAB = Math.pow(partA / partB, 333.3*partA);
-				double x = Math.log(partAB);
-
-				System.out.println("++++" + iterationCodon + "++++");
-				System.out.println("partA:" + partA);
-				System.out.println("partB:" + partB);
-				System.out.println("partAdivB:" + partAdivB);
-				System.out.println("partAB:" + partAB);
-				System.out.println("log(partAB)" + x);
-
-			}
-		}
-
-		// double partA = coreKLDPartA("ATG",synAminoAcidBox());
-		// double partB = coreKLDPartB("ATG",synAminoAcidBox());
-		// double partAdivB = partA/partB;
-		// double partAB = Math.pow(partA / partB, partA);
-		// double x = Math.log(partAB);
-		//
-		// System.out.println("++++"+"ACA"+"++++");
-		// System.out.println("partA:"+partA);
-		// System.out.println("partB:"+partB);
-		// System.out.println("partAdivB:"+partAdivB);
-		// System.out.println("partAB:"+partAB);
-		// System.out.println("log(partAB)"+x);
+		int binSize = 10;
+		int binNumber = 5;
+		KLD_Builder(binSize, binNumber,path,path+"tempNoSpace.fasta");
 
 	}
-
-	// 计算fasta文件中的基因条数
-	private static int countGeneInFasta(String inputFileName) {
-		int genNumberInFasta = 0;
-		File file = new File(inputFileName);
+	
+	private static void KLD_Builder(int binSize, int binNumber,String path,String inputFileName){
+		double[] totalCodonF = coreKLDPartB(synAminoAcidBox(), path);
+		double[][] codonF = coreKLDPartA(binSize, binNumber,synAminoAcidBox(), path, inputFileName);
+		
+		FileWriter writer;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String tempString;
-			while ((tempString = reader.readLine()) != null) {
-				if (tempString.contains(">")) {
-					genNumberInFasta++;
+			writer = new FileWriter(path+"output.fasta");
+			BufferedWriter bw = new BufferedWriter(writer);
+			for (int j = 0; j < Code_table.length; j++) {
+				for (int i = 0; i < binNumber; i++) {
+//					System.out.println("codonF[j][i]"+codonF[j][i]);
+//					System.out.println("totalCodonF[j]"+totalCodonF[j]);
+					double partAB = Math.pow(codonF[j][i] / totalCodonF[j], 1000*codonF[j][i]);
+//					System.out.println("partAB"+partAB);
+					double x = Math.log(partAB);
+//					System.out.println("x"+x);
+					bw.write(new BigDecimal(Double.toString(x)).setScale(3,BigDecimal.ROUND_HALF_UP).toString()+"\t");
 				}
+				bw.write("\n");
 			}
-			reader.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			bw.flush();
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return genNumberInFasta;
 	}
 
 	// 生成无换行临时文件tempNoSpace.fasta
@@ -222,112 +159,92 @@ public class KLD {
 		}
 	}
 
-	// 将基因组中对应位置的密码子生成string数组，position代表第几个密码子,whichGene为从上到下各个基因。与tempNoSpace.fasta偶联
-	private static String[] getPositionCodon(int position,String path) {
-		int genNumber = countGeneInFasta(path+"tempNoSpace.fasta");
-		File file = new File(
-				path+"tempNoSpace.fasta");
-		String[] myPositionCodonArray = new String[genNumber];
-		String tempString;
-		BufferedReader reader =null;
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			int whichGene = 0;
-			while ((tempString = reader.readLine()) != null) {
-				if (!tempString.contains(">")) {
-					myPositionCodonArray[whichGene] = tempString.substring(
-							position, position + 3);
-					whichGene++;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally{
+	
+	// KLD计算的分子。写死为每个bin10个密码，分别5个bin
+	private static double[][] coreKLDPartA(int binSize, int binNumber,
+			Map<String, String> synAminoAcidTable,String path,String inputFileName) {
+		int theCodonCounter = 0;
+		int synCodonCounter = 0;
+		int[][] countCodon = new int [59][binNumber];
+		int[][] countAA = new int [19][binNumber];
+		double[][] partA = new double [59][binNumber];
+		
+		File file = new File(inputFileName);
+		
 			try {
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				String tempString0;
+				while ((tempString0 = reader.readLine()) != null) {
+					if(!tempString0.contains(">")){
+						for (int i = 0; i < binNumber; i++) {//一条基因中的N个bin
+							String tempBinSequence = tempString0.substring(3*i*binSize, 3*(i+1)*binSize);
+							for (int j = 0; j < binSize-1; j++) {//遍历一个bin
+								for (int k = 0; k < Code_table.length; k++) {
+									String tempCodon = tempBinSequence.substring(j*3, (j+1)*3);
+									if(Code_table[k].equals(tempCodon)){
+										countCodon[k][i]++;
+										String tempAA = synAminoAcidTable.get(tempCodon);
+										for (int m = 0; m < AA_table.length; m++) {
+											if(tempAA.equals(AA_table[m])){
+												countAA[m][i]++;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 				reader.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		
-		return myPositionCodonArray;
-	}
-
-	// KLD计算的分子。写死为每个bin10个密码，分别5个bin
-	private static double coreKLDPartA(String codon,
-			Map<String, String> synAminoAcidTable,String path) {
-
-		int theCodonCounter = 0;
-		int synCodonCounter = 0;
-		double partA = 0;
-
-		// int totalCodonCounter = 0;
-
-		// synCodonCounter统计出与传入codon同义的codon个数（k）
-		for (Map.Entry<String, String> entry : synAminoAcidTable.entrySet()) {
-			// 比较氨基酸
-			if (synAminoAcidTable.get(codon).equals(entry.getValue())) {
-				String synCodon = entry.getKey();
-				for (int i = 1; i <= 10; i++) {
-					String[] temp = getPositionCodon(i,path);
-					for (int j = 0; j < temp.length; j++) {
-						// totalCodonCounter++;
-						if (temp[j].equals(synCodon)) {
-							synCodonCounter++;
+			
+			for (int j = 0; j < binNumber; j++) {
+				for (int i = 0; i < 59; i++) {
+					String tempAA = synAminoAcidTable.get(Code_table[i]);
+					for (int k = 0; k < AA_table.length; k++) {
+						if(tempAA.equals(AA_table[k])){
+							partA[i][j] = ((double)countCodon[i][j])/countAA[k][j];
 						}
 					}
 				}
 			}
-		}
-
-		// 统计出该种codon的个数（k）
-		for (int i = 1; i <= 10; i++) {
-			String[] temp = getPositionCodon(i,path);
-			for (int j = 0; j < temp.length; j++) {
-				// totalCodonCounter++;
-				if (temp[j].equals(codon)) {
-					theCodonCounter++;
-				}
-			}
-		}
-		System.out
-				.println("+++" + codon + "synCodonCounter:" + synCodonCounter);
-		System.out
-				.println("+++" + codon + "theCodonCounter:" + theCodonCounter);
-		partA = (((double) theCodonCounter) / synCodonCounter);
+		
+//		partA = (((double) theCodonCounter) / synCodonCounter);
 		return partA;
 	}
 
-	// KLD计算的分母。与tempNoSpace.fasta强偶联
-	private static double coreKLDPartB(String codon,
-			Map<String, String> synAminoAcidTable,String path) {
+	
+	//算出qi,j.即为密码子在所有基因中的比例，返回一个数组
+	private static double[] coreKLDPartB(Map<String, String> synAminoAcidTable, String path) {
+		int[] countCodon = new int[59];
+		int[] countAA = new int [19];
 		int oneGenomeCodon = 0;
 		int synOneGenomeCodon = 0;
-		double partB = 0;
-		
+		double[] partB = new double [59];
+
 		BufferedReader reader = null;
-		File file = new File(
-				path+"tempNoSpace.fasta");
+		File file = new File(path + "tempNoSpace.fasta");
 		try {
 			String tempString;
 			reader = new BufferedReader(new FileReader(file));
 			while ((tempString = reader.readLine()) != null) {
-				for (int i = 0; i < tempString.length() / 3; i = i + 3) {
-					// 该密码子数量
-					if (tempString.substring(i, i + 3).equals(codon)) {
-						oneGenomeCodon++;
-					}
-					// 同义密码子数目
-					for (Map.Entry<String, String> entry : synAminoAcidTable
-							.entrySet()) {
-						// 比较氨基酸
-						if (synAminoAcidTable.get(codon).equals(
-								entry.getValue())) {
-							String synCodon = entry.getKey();
-							if (tempString.substring(i, i + 3).equals(synCodon)) {
-								synOneGenomeCodon++;
+				if (!tempString.contains(">")) {
+					for (int i = 0; i < tempString.length() / 3; i = i + 3) {
+						for(int j = 0;j<Code_table.length;j++){
+							String aTempString = Code_table[j];
+							if (tempString.substring(i, i + 3).equals(aTempString)) {
+								countCodon[j]++;
+								for(int k = 0;k<AA_table.length;k++){
+									String aTempString1 = AA_table[k];
+									if(aTempString1.equals(synAminoAcidTable.get(aTempString))){
+										countAA[k]++;
+									}
+									
+								}
 							}
 						}
 					}
@@ -337,18 +254,23 @@ public class KLD {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}		
+		for (int i = 0; i < Code_table.length; i++) {
+			for(int j = 0; j < AA_table.length; j++){
+				if((synAminoAcidTable.get(Code_table[i])).equals(AA_table[j])){
+					partB[i] = ((double)countCodon[i])/countAA[j];
+				}
+			}
 		}
-		System.out.println("+++" + codon + "oneGenomeCodon:" + oneGenomeCodon);
-		System.out.println("+++" + codon + "synOneGenomeCodon:"
-				+ synOneGenomeCodon);
-		partB = (((double) oneGenomeCodon) / synOneGenomeCodon);
-
+//		System.out.println("+++" + codon + "oneGenomeCodon:" + oneGenomeCodon);
+//		System.out.println("+++" + codon + "synOneGenomeCodon:"
+//				+ synOneGenomeCodon);
 		return partB;
 	}
 
